@@ -23,35 +23,33 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-              <Component id="digitalWatchBean2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="176" max="32767" attributes="0"/>
+              <Component id="digitalWatchBean1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-              <Component id="digitalWatchBean2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="163" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+              <Component id="digitalWatchBean1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="162" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="cat.bk.digitalwatch.DigitalWatchBean" name="digitalWatchBean2">
+    <Component class="cat.bk.digitalwatch.DigitalWatchBean" name="digitalWatchBean1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="digitalWatchBean2"/>
-        <Property name="alarmHour" type="int" value="19"/>
-        <Property name="alarmMinute" type="int" value="52"/>
-        <Property name="alarmText" type="java.lang.String" value="Ring ring!!"/>
-        <Property name="isAlarmEnabled" type="boolean" value="true"/>
-        <Property name="isFormat24h" type="boolean" value="true"/>
+        <Property name="alarmEnabled" type="boolean" value="true"/>
+        <Property name="alarmHour" type="int" value="20"/>
+        <Property name="alarmMinute" type="int" value="13"/>
+        <Property name="alarmText" type="java.lang.String" value="Ring ring!!!"/>
       </Properties>
       <Events>
-        <EventHandler event="catchAlarm" listener="cat.bk.digitalwatch.AlarmListener" parameters="cat.bk.digitalwatch.AlarmEvent" handler="digitalWatchBean2CatchAlarm"/>
+        <EventHandler event="catchAlarm" listener="cat.bk.digitalwatch.AlarmListener" parameters="cat.bk.digitalwatch.AlarmEvent" handler="digitalWatchBean1CatchAlarm"/>
       </Events>
     </Component>
   </SubComponents>

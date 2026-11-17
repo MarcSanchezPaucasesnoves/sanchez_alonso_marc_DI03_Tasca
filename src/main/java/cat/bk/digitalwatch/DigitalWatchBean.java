@@ -25,6 +25,8 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
     private int alarmMinute = 0;
     private String alarmText = "¡S'ha arribat a l'hora especificada!";
     
+    private boolean isAlarmWarningActive = false;
+    
     private Timer timer;
     private AlarmListener receiver;
     
@@ -38,7 +40,7 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
         return isFormat24h;
     }
 
-    public void setIsFormat24h(boolean isFormat24h) {
+    public void setFormat24h(boolean isFormat24h) {
         this.isFormat24h = isFormat24h;
     }
 
@@ -46,8 +48,11 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
         return isAlarmEnabled;
     }
 
-    public void setIsAlarmEnabled(boolean isAlarmEnabled) {
+    public void setAlarmEnabled(boolean isAlarmEnabled) {
         this.isAlarmEnabled = isAlarmEnabled;
+        
+        if (isAlarmEnabled) isAlarmWarningActive = false;
+        
     }
 
     public int getAlarmHour() {
@@ -105,7 +110,12 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
             LocalTime currentTime = LocalTime.now(ZoneId.of("Europe/Madrid"));
             
             if (currentTime.getHour() == alarmHour && currentTime.getMinute() == alarmMinute) {
-                receiver.catchAlarm(new AlarmEvent(this, alarmText));
+                if (!isAlarmWarningActive) {
+                    isAlarmWarningActive = true;
+                    receiver.catchAlarm(new AlarmEvent(this, alarmText));
+                }
+            } else {
+                isAlarmWarningActive = false;
             }
         }
         

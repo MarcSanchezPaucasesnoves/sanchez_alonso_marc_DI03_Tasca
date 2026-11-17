@@ -4,6 +4,7 @@
  */
 package cat.bk.gui;
 
+import cat.bk.digitalwatch.AlarmEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,42 +31,46 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        digitalWatchBean2 = new cat.bk.digitalwatch.DigitalWatchBean();
+        digitalWatchBean1 = new cat.bk.digitalwatch.DigitalWatchBean();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        digitalWatchBean2.setText("digitalWatchBean2");
-        digitalWatchBean2.setAlarmHour(19);
-        digitalWatchBean2.setAlarmMinute(52);
-        digitalWatchBean2.setAlarmText("Ring ring!!");
-        digitalWatchBean2.setIsAlarmEnabled(true);
-        digitalWatchBean2.setIsFormat24h(true);
-        digitalWatchBean2.addAlarmListener(this::digitalWatchBean2CatchAlarm);
+        digitalWatchBean1.setAlarmEnabled(true);
+        digitalWatchBean1.setAlarmHour(20);
+        digitalWatchBean1.setAlarmMinute(13);
+        digitalWatchBean1.setAlarmText("Ring ring!!!");
+        digitalWatchBean1.addAlarmListener(this::digitalWatchBean1CatchAlarm);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(digitalWatchBean2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(digitalWatchBean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(digitalWatchBean2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addComponent(digitalWatchBean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void digitalWatchBean2CatchAlarm(cat.bk.digitalwatch.AlarmEvent evt) {//GEN-FIRST:event_digitalWatchBean2CatchAlarm
-        JOptionPane.showMessageDialog(this, evt.getMessage(), "AVÍS D'ALARMA", JOptionPane.WARNING_MESSAGE);
-    }//GEN-LAST:event_digitalWatchBean2CatchAlarm
+    private void digitalWatchBean1CatchAlarm(cat.bk.digitalwatch.AlarmEvent evt) {//GEN-FIRST:event_digitalWatchBean1CatchAlarm
+        alarmDialog(evt);
+    }//GEN-LAST:event_digitalWatchBean1CatchAlarm
 
+    
+    private void alarmDialog(AlarmEvent event) {
+        JOptionPane.showMessageDialog(this, event.getMessage(), "AVÍS D'ALARMA", JOptionPane.WARNING_MESSAGE);
+    }
+            
+            
     /**
      * @param args the command line arguments
      */
@@ -92,6 +97,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cat.bk.digitalwatch.DigitalWatchBean digitalWatchBean2;
+    private cat.bk.digitalwatch.DigitalWatchBean digitalWatchBean1;
     // End of variables declaration//GEN-END:variables
 }
