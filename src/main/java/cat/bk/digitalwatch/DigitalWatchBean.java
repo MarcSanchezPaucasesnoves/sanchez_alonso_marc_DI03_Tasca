@@ -1,0 +1,72 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Beans/Bean.java to edit this template
+ */
+package cat.bk.digitalwatch;
+
+import java.awt.event.ActionListener;
+import java.beans.*;
+import java.io.Serializable;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author marc
+ */
+public class DigitalWatchBean extends JLabel implements Serializable, ActionListener {
+    private boolean format24h = true;
+    private boolean alarmEnabled = false;
+    private int alarmHour = 0;
+    private int alarmMinute = 0;
+    private String alarmText = "¡S'ha arribat a l'hora especificada!";
+    
+    private Timer timer;
+    private AlarmListener receiver;
+    
+    public DigitalWatchBean() {
+        refreshTime();
+        timer = new Timer(1000, this);
+        timer.start();
+    }
+
+    public boolean isFormat24h() {
+        return format24h;
+    }
+
+    public void setFormat24h(boolean format24h) {
+        this.format24h = format24h;
+    }
+
+    public boolean isAlarmEnabled() {
+        return alarmEnabled;
+    }
+
+    public void setAlarmEnabled(boolean alarmEnabled) {
+        this.alarmEnabled = alarmEnabled;
+    }
+
+    public int getAlarmHour() {
+        return alarmHour;
+    }
+
+    public void setAlarmHour(int alarmHour) {
+        this.alarmHour = alarmHour;
+    }
+
+    public int getAlarmMinute() {
+        return alarmMinute;
+    }
+
+    public void setAlarmMinute(int alarmMinute) {
+        this.alarmMinute = alarmMinute;
+    }
+
+    public String getAlarmText() {
+        return alarmText;
+    }
+
+    public void setAlarmText(String alarmText) {
+        this.alarmText = alarmText;
+    }
+    
+}
