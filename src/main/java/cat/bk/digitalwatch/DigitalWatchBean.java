@@ -4,18 +4,23 @@
  */
 package cat.bk.digitalwatch;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.*;
 import java.io.Serializable;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 /**
  *
  * @author marc
  */
 public class DigitalWatchBean extends JLabel implements Serializable, ActionListener {
-    private boolean format24h = true;
-    private boolean alarmEnabled = false;
+    private boolean isFormat24h = true;
+    private boolean isAlarmEnabled = false;
     private int alarmHour = 0;
     private int alarmMinute = 0;
     private String alarmText = "¡S'ha arribat a l'hora especificada!";
@@ -30,19 +35,19 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
     }
 
     public boolean isFormat24h() {
-        return format24h;
+        return isFormat24h;
     }
 
-    public void setFormat24h(boolean format24h) {
-        this.format24h = format24h;
+    public void setIsFormat24h(boolean isFormat24h) {
+        this.isFormat24h = isFormat24h;
     }
 
     public boolean isAlarmEnabled() {
-        return alarmEnabled;
+        return isAlarmEnabled;
     }
 
-    public void setAlarmEnabled(boolean alarmEnabled) {
-        this.alarmEnabled = alarmEnabled;
+    public void setIsAlarmEnabled(boolean isAlarmEnabled) {
+        this.isAlarmEnabled = isAlarmEnabled;
     }
 
     public int getAlarmHour() {
@@ -67,6 +72,34 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
 
     public void setAlarmText(String alarmText) {
         this.alarmText = alarmText;
+    }
+    
+    
+    private void refreshTime() {
+        LocalTime currentTime = LocalTime.now(ZoneId.of("Europe/Madrid"));
+        
+        DateTimeFormatter format;
+        
+        if (isFormat24h) {
+            format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        } else {
+            format = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        }
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        refreshTime();
+        
+        if (isAlarmEnabled && receiver != null) {
+            LocalTime currentTime = LocalTime.now(ZoneId.of("Europe/Madrid"));
+            
+            if (currentTime.getHour() == alarmHour && currentTime.getMinute() == alarmMinute) {
+                receiver.catchAlarm(new AlarmEvent(this, alarmText));
+            }
+        }
+        
+        repaint();
     }
     
 }
