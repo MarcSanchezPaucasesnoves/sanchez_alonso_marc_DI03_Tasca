@@ -74,6 +74,14 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
         this.alarmText = alarmText;
     }
     
+    public void addAlarmListener(AlarmListener listener) {
+        this.receiver = listener;
+    }
+    
+    public void removeAlarmListener(AlarmListener listener) {
+        this.receiver = null;
+    }
+    
     
     private void refreshTime() {
         LocalTime currentTime = LocalTime.now(ZoneId.of("Europe/Madrid"));
@@ -85,6 +93,8 @@ public class DigitalWatchBean extends JLabel implements Serializable, ActionList
         } else {
             format = DateTimeFormatter.ofPattern("hh:mm:ss a");
         }
+        
+        setText(currentTime.format(format));
     }
     
     @Override
